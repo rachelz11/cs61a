@@ -21,7 +21,17 @@ def roll_dice(num_rolls, dice=six_sided):
     assert type(num_rolls) == int, 'num_rolls must be an integer.'
     assert num_rolls > 0, 'Must roll at least once.'
     # BEGIN PROBLEM 1
-    "*** YOUR CODE HERE ***"
+    result = 0
+    while num_rolls > 0:
+        out = dice()
+        if out == 1:
+            result = 1
+        elif result == 1:
+            result = 1
+        else:
+            result += out
+        num_rolls -= 1
+    return result
     # END PROBLEM 1
 
 
@@ -32,7 +42,10 @@ def free_bacon(score):
     """
     assert score < 100, 'The game should be over.'
     # BEGIN PROBLEM 2
-    "*** YOUR CODE HERE ***"
+    if score < 10:
+        return 2 + score
+    else:
+        return 2 + abs(score // 10 - score % 10)
     # END PROBLEM 2
 
 
@@ -50,7 +63,10 @@ def take_turn(num_rolls, opponent_score, dice=six_sided):
     assert num_rolls <= 10, 'Cannot roll more than 10 dice.'
     assert opponent_score < 100, 'The game should be over.'
     # BEGIN PROBLEM 3
-    "*** YOUR CODE HERE ***"
+    if num_rolls == 0:
+        return free_bacon(opponent_score)
+    else:
+        return roll_dice(num_rolls, dice)
     # END PROBLEM 3
 
 
